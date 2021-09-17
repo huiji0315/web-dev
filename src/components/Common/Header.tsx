@@ -132,7 +132,7 @@ const throttle = (callback, waitTime) => {
   };
 };
 
-const Header: FunctionComponent = () => {
+const Header: FunctionComponent = (isFullpage = false) => {
   const [hide, setHide] = useState(false);
   const [pageY, setPageY] = useState(0);
 
@@ -145,12 +145,18 @@ const Header: FunctionComponent = () => {
     setPageY(pageYOffset);
   };
 
+  const fullpage = () => {
+    if (isFullpage === true)
+      setDropdown(false);
+  }
+
   const throttleScroll = throttle(handleScroll, 50);
 
   if (typeof document !== 'undefined') {
     const documentRef = useRef(document);
 
     useEffect(() => {
+      console.log('header!!!!!');
       documentRef.current.addEventListener('scroll', throttleScroll);
       return () =>
         documentRef.current.removeEventListener('scroll', throttleScroll);

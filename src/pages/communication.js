@@ -41,6 +41,8 @@ const CommunicationPage = ({
     navigationTooltips={anchors}
     onLeave={(origin, destination, direction) => {
       console.log('onLeave event', { origin, destination, direction });
+      if (direction === 'down') console.log('yaaahooooo');
+      if (document.body.classList.contains('fp-viewing-firstPage')) console.log('document');
     }}
     render={({ state, fullpageApi }) => {
       console.log('render prop change', state, fullpageApi); // eslint-disable-line no-console
